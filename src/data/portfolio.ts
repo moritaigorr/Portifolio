@@ -5,22 +5,25 @@ export const homeSections = ["inicio", "trabalhos", "jornada", "habilidades", "c
 export const projects = [
   {
     number: "01",
-    stack: "PYTHON · PANDAS · NUMPY · MATPLOTLIB · SEABORN",
-    image: "/images/compasso.png",
+    stack: "JAVA 21 · SPRING BOOT · POSTGRESQL · REACT · TYPESCRIPT",
+    image: "/images/flowpay-laptop.png",
     slug: "superstore-eda",
-    href: "https://github.com/moritaigorr/Sample-Superstore-Dataset",
+    placeholder: false,
+    href: "https://github.com/moritaigorr/FlowPay",
   },
   {
     number: "02",
-    stack: "JAVA · SPRING BOOT · REACT · TYPESCRIPT",
+    stack: "暂无项目 · 敬请期待",
     image: "/images/estudio.png",
     slug: "gestao-de-tickets",
+    placeholder: true,
   },
   {
     number: "03",
-    stack: "PYTHON · FASTAPI · REACT · TYPESCRIPT · JIRA/JQL",
+    stack: "作品整理中 · 持续更新",
     image: "/images/traco.png",
     slug: "analytics-de-qualidade",
+    placeholder: true,
   },
 ] as const;
 

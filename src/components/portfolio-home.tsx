@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteNav } from "@/components/site-nav";
 import { ContactCards } from "@/components/contact-cards";
+import { TechnologyStack } from "@/components/technology-stack";
 import { locales } from "@/data/locales";
 import { getPortfolioPath, projects, type Locale } from "@/data/portfolio";
 
@@ -42,28 +43,46 @@ export function PortfolioHome({ locale }: { locale: Locale }) {
           {projects.map((project, index) => {
             const copy = projectCopy[project.slug];
             const href = getPortfolioPath(locale, project.slug);
+            const visual = (
+              <>
+                <Image
+                  src={project.image}
+                  alt={project.placeholder ? "" : work.imageAlt}
+                  fill
+                  priority={index === 0}
+                  sizes="(max-width: 760px) 100vw, 58vw"
+                  unoptimized={project.slug === "superstore-eda"}
+                  className="project-image"
+                />
+                {!project.placeholder && <span className="visual-mark mono">{work.visualLabel} / {project.number}</span>}
+                {project.placeholder && (
+                  <svg className="placeholder-lock" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="4.5" y="10" width="15" height="10" rx="2" />
+                    <path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v2" />
+                  </svg>
+                )}
+              </>
+            );
 
             return (
               <article className={`project-row${index % 2 ? " project-row-reverse" : ""}`} key={project.slug} data-reveal>
-                <Link className="project-visual" href={href} aria-label={`${work.detailsLink}: ${copy.title}`}>
-                  <Image
-                    src={project.image}
-                    alt={work.imageAlt}
-                    fill
-                    priority={index === 0}
-                    sizes="(max-width: 760px) 100vw, 58vw"
-                    className="project-image"
-                  />
-                  <span className="visual-mark mono">{work.visualLabel} / {project.number}</span>
-                </Link>
+                {project.placeholder ? (
+                  <div className="project-visual project-visual-placeholder" aria-hidden="true">{visual}</div>
+                ) : (
+                  <Link className="project-visual" href={href} aria-label={`${work.detailsLink}: ${copy.title}`}>
+                    {visual}
+                  </Link>
+                )}
                 <div className="project-copy">
                   <p className="project-meta mono">{copy.category}<span>/</span>{copy.organization}</p>
                   <h3>{copy.title}</h3>
-                  <p className="project-stack mono">{project.stack}</p>
+                  <TechnologyStack stack={project.stack} />
                   <p className="project-description">{copy.description}</p>
-                  <Link className="text-link" href={href}>
-                    {work.detailsLink} <span aria-hidden="true">↗</span>
-                  </Link>
+                  {!project.placeholder && (
+                    <Link className="text-link" href={href}>
+                      {work.detailsLink} <span aria-hidden="true">↗</span>
+                    </Link>
+                  )}
                 </div>
               </article>
             );

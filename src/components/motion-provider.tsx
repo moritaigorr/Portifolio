@@ -41,7 +41,7 @@ export function MotionProvider() {
           scrollTrigger: { trigger: element, start: "top 88%", once: true },
         });
       });
-      gsap.utils.toArray<HTMLElement>(".project-image").forEach((image) => {
+      gsap.utils.toArray<HTMLElement>(".project-visual:not(.project-visual-placeholder) .project-image").forEach((image) => {
         gsap.fromTo(image, { scale: 1.045 }, {
           scale: 1,
           duration: 1.1,
