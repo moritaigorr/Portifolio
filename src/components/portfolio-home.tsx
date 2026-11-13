@@ -3,13 +3,14 @@ import Link from "next/link";
 import { SiteNav } from "@/components/site-nav";
 import { ContactCards } from "@/components/contact-cards";
 import { TechnologyStack } from "@/components/technology-stack";
+import { ExperienceSection } from "@/components/experience-page";
 import { locales } from "@/data/locales";
 import { getPortfolioPath, projects, type Locale } from "@/data/portfolio";
 
 const location = "Sorocaba, SP";
 
 export function PortfolioHome({ locale }: { locale: Locale }) {
-  const { nav, hero, work, journey, expertise, contact, projects: projectCopy } = locales[locale];
+  const { nav, hero, work, experience, contact, projects: projectCopy } = locales[locale];
 
   return (
     <main>
@@ -19,12 +20,11 @@ export function PortfolioHome({ locale }: { locale: Locale }) {
         <div className="hero-content">
           <h1 id="hero-title" className="hero-title">
             <span className="hero-title-mask"><span className="hero-title-line">Igor Morita</span></span>
-            <span className="hero-title-mask"><span className="hero-title-line">Silva.</span></span>
           </h1>
           <p className="hero-role"><span aria-hidden="true">/</span> {hero.role}</p>
           <div className="hero-bottom">
             {hero.description && <p>{hero.description}</p>}
-            <p className="location">{location}</p>
+            <p className="location"><span className="location-flag" role="img" aria-label="Brasil"><svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="2" fill="#009b3a" /><path d="M14 2.2 25 10 14 17.8 3 10Z" fill="#ffdf00" /><circle cx="14" cy="10" r="4.4" fill="#002776" /></svg></span>{location}</p>
           </div>
         </div>
         <a className="scroll-cue" href="#trabalhos" aria-label={hero.scrollLabel}>
@@ -35,9 +35,8 @@ export function PortfolioHome({ locale }: { locale: Locale }) {
 
       <section className="work-section light-surface section-pad" id="trabalhos" aria-labelledby="work-title">
         <div className="section-heading" data-reveal>
-          <h2 id="work-title">{work.title[0]}<br />{work.title[1]}</h2>
+          <h2 id="work-title">{work.title}</h2>
           <span className="heading-rule" aria-hidden="true" />
-          <p>{work.description}</p>
         </div>
         <div className="project-list">
           {projects.map((project, index) => {
@@ -90,46 +89,7 @@ export function PortfolioHome({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="journey-section cement-surface section-pad" id="jornada" aria-labelledby="journey-title">
-        <div className="journey-intro" data-reveal>
-          <p className="section-kicker mono">{journey.kicker} / {location}</p>
-          <h2 id="journey-title">{journey.title[0]}<br />{journey.title[1]}</h2>
-          <p className="journey-description">{journey.description}</p>
-          <div className="principle-block">
-            <span className="principle-mark" aria-hidden="true">“</span>
-            <p>{journey.principle}</p>
-          </div>
-        </div>
-        <ol className="timeline">
-          {journey.timeline.map((item, index) => (
-            <li className="timeline-item" key={`${item.year}-${index}`} data-reveal>
-              <span className={`timeline-dot${index === 0 ? " is-active" : ""}`} aria-hidden="true" />
-              <p className="timeline-year mono">{item.year}</p>
-              <p className="timeline-copy">{item.text}</p>
-            </li>
-          ))}
-        </ol>
-        <p className="demo-note mono">{journey.education}</p>
-      </section>
-
-      <section className="expertise-section light-surface section-pad" id="habilidades" aria-labelledby="expertise-title">
-        <div className="section-heading expertise-heading" data-reveal>
-          <h2 id="expertise-title">{expertise.title[0]}<br />{expertise.title[1]}</h2>
-          <span className="heading-rule" aria-hidden="true" />
-          <p>{expertise.description}</p>
-        </div>
-        <div className="expertise-grid">
-          {expertise.groups.map((group, index) => (
-            <div className="expertise-column" key={group.title} data-reveal>
-              <span className="expertise-number mono">0{index + 1}</span>
-              <h3>{group.title}</h3>
-              <ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul>
-            </div>
-          ))}
-        </div>
-        <p className="demo-note mono">{expertise.certification}</p>
-      </section>
-
+      <ExperienceSection copy={experience} />
       <footer className="contact-section dark-surface" id="contato" aria-labelledby="contact-title">
         <div className="contact-background" aria-hidden="true" />
         <div className="contact-content section-pad">

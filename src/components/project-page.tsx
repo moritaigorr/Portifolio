@@ -44,7 +44,9 @@ export function ProjectPage({ locale, slug }: { locale: Locale; slug: string }) 
   return (
     <main className="case-page">
       <header className="case-header">
-        <Link className="wordmark case-wordmark" href={homePath} aria-label={content.nav.homeLabel}>IGOR MORITA SILVA</Link>
+        <Link className="wordmark case-wordmark" href={homePath} aria-label={content.nav.homeLabel}>
+          <span aria-hidden="true">IM</span><span className="wordmark-accent" aria-hidden="true">.</span>
+        </Link>
         <LanguageSwitch locale={locale} label={content.nav.languageLabel} slug={project.slug} />
         <Link className="back-link mono" href={workPath}><span aria-hidden="true">← </span>{content.caseStudy.backLink}</Link>
       </header>

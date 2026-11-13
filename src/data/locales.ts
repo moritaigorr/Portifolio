@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Locale, ProjectSlug, homeSections } from "./portfolio";
+import type { Locale, ProjectSlug, navigationItems } from "./portfolio";
 
 type ProjectCopy = {
   title: string;
@@ -18,7 +18,7 @@ export type NavCopy = {
   languageLabel: string;
   menu: string;
   close: string;
-  links: Record<(typeof homeSections)[number], string>;
+  links: Record<(typeof navigationItems)[number], string>;
 };
 
 export type ContactCopy = {
@@ -41,7 +41,7 @@ export type ContactCopy = {
   footer: string;
 };
 
-type LocaleContent = {
+export type LocaleContent = {
   lang: string;
   openGraphLocale: string;
   metadataTitle: string;
@@ -55,8 +55,7 @@ type LocaleContent = {
     scrollLabel: string;
   };
   work: {
-    title: readonly [string, string];
-    description: string;
+    title: string;
     visualLabel: string;
     detailsLink: string;
     imageAlt: string;
@@ -69,11 +68,20 @@ type LocaleContent = {
     timeline: readonly { year: string; text: string }[];
     education: string;
   };
+  experience: {
+    title: string;
+    role: string;
+    companyPeriod: string;
+    sectionTitle: string;
+    contributions: readonly { title: string; description: string }[];
+    technologies: string;
+  };
   expertise: {
     title: readonly [string, string];
     description: string;
-    groups: readonly { title: string; items: readonly string[] }[];
-    certification: string;
+    stamp: string;
+    softSkills: readonly string[];
+    hardSkillGroups: readonly { title: string; items: readonly string[] }[];
   };
   contact: ContactCopy;
   caseStudy: {
@@ -107,8 +115,8 @@ export const locales: Record<Locale, LocaleContent> = {
       close: "Fechar",
       links: {
         inicio: "Início",
-        trabalhos: "Trabalhos",
-        jornada: "Jornada",
+        trabalhos: "Projetos",
+        experiencia: "Experiência",
         habilidades: "Habilidades",
         contato: "Contato",
       },
@@ -117,11 +125,10 @@ export const locales: Record<Locale, LocaleContent> = {
       role: "Engenheiro de Software · Backend & Full Stack",
       description: "",
       scroll: "Rolar",
-      scrollLabel: "Rolar para trabalhos",
+      scrollLabel: "Rolar para projetos",
     },
     work: {
-      title: ["Projetos", "e experiência"],
-      description: "Projeto público em análise de dados e experiência profissional com APIs, aplicações corporativas e analytics.",
+      title: "Projetos",
       visualLabel: "Portfólio",
       detailsLink: "Ver detalhes",
       imageAlt: "Dashboard do FlowPay exibido em um laptop sobre uma mesa",
@@ -139,10 +146,25 @@ export const locales: Record<Locale, LocaleContent> = {
       ],
       education: "BACHARELADO EM CIÊNCIA DA COMPUTAÇÃO · UNIVERSIDADE ANHANGUERA / CONCLUSÃO PREVISTA: 2030",
     },
+    experience: {
+      title: "Experiência",
+      role: "Engenheiro de Software",
+      companyPeriod: "Evertec · ABR. 2026 — ATUAL",
+      sectionTitle: "Contribuições técnicas",
+      contributions: [
+        { title: "APIs REST PARA ATENDIMENTO", description: "Implementação de endpoints REST para integrar sistemas e dar suporte aos fluxos de atendimento." },
+        { title: "FLUXO DE TICKETS E ACESSO", description: "Operações de criação e priorização de tickets, validação de transições de status e controle de acesso." },
+        { title: "MÉTRICAS DE QUALIDADE DE SOFTWARE", description: "APIs em FastAPI e dashboards para consolidar indicadores de qualidade e acompanhar sua evolução." },
+        { title: "CONSULTAS E VISUALIZAÇÃO DE DADOS", description: "Filtros e gráficos comparativos para segmentar métricas, analisar variações e acompanhar resultados." },
+      ],
+      technologies: "JAVA · SPRING BOOT · PYTHON · FASTAPI · JIRA/JQL",
+    },
     expertise: {
-      title: ["Ferramentas", "e fundamentos"],
-      description: "Ferramentas e práticas usadas no desenvolvimento de aplicações e integrações.",
-      groups: [
+      title: ["Soft Skills", "Hard Skills"],
+      description: "Competências comportamentais e conhecimentos técnicos aplicados ao desenvolvimento de software.",
+      stamp: "02 CATEGORIAS",
+      softSkills: ["Pensamento analítico", "Resolução de problemas", "Organização e priorização", "Atenção a detalhes", "Aprendizado contínuo", "Comunicação técnica", "Inglês fluente"],
+      hardSkillGroups: [
         { title: "Linguagens", items: ["Java", "Python", "TypeScript", "JavaScript", "SQL"] },
         { title: "Backend", items: ["Spring Boot", "Spring Data JPA", "Hibernate", "Spring Security", "FastAPI", "APIs REST", "JWT"] },
         { title: "Frontend", items: ["React", "TypeScript", "HTML5", "CSS3"] },
@@ -150,7 +172,6 @@ export const locales: Record<Locale, LocaleContent> = {
         { title: "Qualidade", items: ["JUnit", "Mockito", "Selenium", "Playwright", "Testes unitários", "Integração e E2E"] },
         { title: "Ferramentas", items: ["Git", "Docker", "Docker Compose", "OpenAPI / Swagger", "Jira / JQL"] },
       ],
-      certification: "AWS CLOUD SOLUTIONS ARCHITECT — EM ANDAMENTO · INGLÊS FLUENTE",
     },
     contact: {
       title: ["Vamos", "conversar"],
@@ -164,10 +185,10 @@ export const locales: Record<Locale, LocaleContent> = {
       copiedStatus: "E-mail copiado",
       failedStatus: "Não foi possível copiar o e-mail",
       resume: {
-        label: "PDF · PT-BR · PRÉ-VISUALIZAR",
-        title: "Currículo em português",
+        label: "PDF · PRÉ-VISUALIZAR",
+        title: "Currículo",
         href: "/cv/Igor_Morita_CV_ATS.pdf",
-        openLabel: "Abrir currículo em português",
+        openLabel: "Abrir currículo",
       },
       footer: "ENGENHEIRO DE SOFTWARE",
     },
@@ -231,8 +252,8 @@ export const locales: Record<Locale, LocaleContent> = {
       close: "Close",
       links: {
         inicio: "Home",
-        trabalhos: "Work",
-        jornada: "Journey",
+        trabalhos: "Projects",
+        experiencia: "Experience",
         habilidades: "Skills",
         contato: "Contact",
       },
@@ -241,11 +262,10 @@ export const locales: Record<Locale, LocaleContent> = {
       role: "Software Engineer · Backend & Full Stack",
       description: "",
       scroll: "Scroll",
-      scrollLabel: "Scroll to work",
+      scrollLabel: "Scroll to projects",
     },
     work: {
-      title: ["Projects", "and experience"],
-      description: "A public data analysis project and professional experience with APIs, enterprise applications, and analytics.",
+      title: "Projects",
       visualLabel: "Portfolio",
       detailsLink: "View details",
       imageAlt: "FlowPay dashboard displayed on a laptop on a desk",
@@ -263,10 +283,25 @@ export const locales: Record<Locale, LocaleContent> = {
       ],
       education: "BACHELOR’S DEGREE IN COMPUTER SCIENCE · UNIVERSIDADE ANHANGUERA / EXPECTED GRADUATION: 2030",
     },
+    experience: {
+      title: "Experience",
+      role: "Software Engineer",
+      companyPeriod: "Evertec · APR. 2026 — PRESENT",
+      sectionTitle: "Technical contributions",
+      contributions: [
+        { title: "REST APIs FOR SERVICE WORKFLOWS", description: "Implementing REST endpoints to integrate systems and support service workflows." },
+        { title: "TICKET WORKFLOWS AND ACCESS", description: "Ticket creation and prioritization operations, status transition validation, and access control." },
+        { title: "SOFTWARE QUALITY METRICS", description: "FastAPI services and dashboards to consolidate quality indicators and track their trends." },
+        { title: "DATA QUERIES AND VISUALIZATION", description: "Filters and comparative charts to segment metrics, analyze variation, and track results." },
+      ],
+      technologies: "JAVA · SPRING BOOT · PYTHON · FASTAPI · JIRA/JQL",
+    },
     expertise: {
-      title: ["Tools", "and fundamentals"],
-      description: "Tools and practices I use to develop applications and integrations.",
-      groups: [
+      title: ["Soft Skills", "Hard Skills"],
+      description: "Interpersonal strengths and technical knowledge applied to software development.",
+      stamp: "02 SKILL AREAS",
+      softSkills: ["Analytical thinking", "Problem solving", "Organization and prioritization", "Attention to detail", "Continuous learning", "Technical communication", "Fluent English"],
+      hardSkillGroups: [
         { title: "Languages", items: ["Java", "Python", "TypeScript", "JavaScript", "SQL"] },
         { title: "Backend", items: ["Spring Boot", "Spring Data JPA", "Hibernate", "Spring Security", "FastAPI", "REST APIs", "JWT"] },
         { title: "Frontend", items: ["React", "TypeScript", "HTML5", "CSS3"] },
@@ -274,7 +309,6 @@ export const locales: Record<Locale, LocaleContent> = {
         { title: "Quality", items: ["JUnit", "Mockito", "Selenium", "Playwright", "Unit tests", "Integration and E2E tests"] },
         { title: "Tools", items: ["Git", "Docker", "Docker Compose", "OpenAPI / Swagger", "Jira / JQL"] },
       ],
-      certification: "AWS CLOUD SOLUTIONS ARCHITECT — IN PROGRESS · FLUENT ENGLISH",
     },
     contact: {
       title: ["Let’s", "talk"],
