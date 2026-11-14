@@ -14,14 +14,14 @@ export const projects = [
   },
   {
     number: "02",
-    stack: "暂无项目 · 敬请期待",
+    stack: "NOVOS PROJETOS EM BREVE",
     image: "/images/estudio.png",
     slug: "gestao-de-tickets",
     placeholder: true,
   },
   {
     number: "03",
-    stack: "作品整理中 · 持续更新",
+    stack: "PORTFÓLIO EM ATUALIZAÇÃO",
     image: "/images/traco.png",
     slug: "analytics-de-qualidade",
     placeholder: true,

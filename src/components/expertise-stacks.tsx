@@ -26,7 +26,10 @@ const stackIcons: Record<string, typeof Code> = {
   "relational modeling": Database, junit: TestTube, mockito: TestTube, selenium: Browser, playwright: Browser,
   "testes unitários": TestTube, "unit tests": TestTube, "integração e e2e": Bug,
   "integration and e2e tests": Bug, git: GitBranch, docker: Cube, "docker compose": Cube,
-  "openapi / swagger": File, "jira / jql": Wrench,
+  "openapi / swagger": File, "jira / jql": Wrench, "oauth 2.0 / oidc": ShieldCheck,
+  "llms / litellm": Brain, rag: Brain, mcp: Plug, embeddings: Database,
+  pgvector: Database, dashboards: Database, pytest: TestTube, vitest: TestTube,
+  azure: Cube, bicep: BracketsCurly, "github actions": GitBranch, "ci/cd": GitBranch,
 };
 const softSkillIcons: Record<string, typeof Code> = {
   "pensamento analítico": Brain, "analytical thinking": Brain,
@@ -35,6 +38,10 @@ const softSkillIcons: Record<string, typeof Code> = {
   "atenção a detalhes": Bug, "attention to detail": Bug,
   "aprendizado contínuo": BookOpenText, "continuous learning": BookOpenText,
   "comunicação técnica": ChatCircleDots, "technical communication": ChatCircleDots,
+  "foco em qualidade": TestTube, "quality focus": TestTube,
+  "disposição para novos desafios": Lightning, "willingness to take on new challenges": Lightning,
+  "curiosidade e aprendizado contínuo": BookOpenText, "curiosity and continuous learning": BookOpenText,
+  "documentação técnica": BookOpenText, "technical documentation": BookOpenText,
 };
 
 type ExpertiseCopy = {

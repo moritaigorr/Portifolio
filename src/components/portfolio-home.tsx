@@ -18,19 +18,22 @@ export function PortfolioHome({ locale }: { locale: Locale }) {
         <div className="hero-image" aria-hidden="true" />
         <SiteNav locale={locale} copy={nav} />
         <div className="hero-content">
-          <h1 id="hero-title" className="hero-title">
-            <span className="hero-title-mask"><span className="hero-title-line">Igor Morita</span></span>
-          </h1>
-          <p className="hero-role"><span aria-hidden="true">/</span> {hero.role}</p>
+          <div className="hero-main">
+            <h1 id="hero-title" className="hero-title">
+              <span className="hero-title-mask"><span className="hero-title-line">Igor Morita</span></span>
+            </h1>
+            <div className="hero-meta">
+              <p className="hero-role"><span aria-hidden="true">/</span> {hero.role}</p>
+              <div className="hero-meta-location">
+                <span className="hero-meta-separator" aria-hidden="true" />
+                <p className="location"><span className="location-flag" role="img" aria-label="Brasil"><svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="2" fill="#009b3a" /><path d="M14 2.2 25 10 14 17.8 3 10Z" fill="#ffdf00" /><circle cx="14" cy="10" r="4.4" fill="#002776" /></svg></span>{location}</p>
+              </div>
+            </div>
+          </div>
           <div className="hero-bottom">
-            {hero.description && <p>{hero.description}</p>}
-            <p className="location"><span className="location-flag" role="img" aria-label="Brasil"><svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="2" fill="#009b3a" /><path d="M14 2.2 25 10 14 17.8 3 10Z" fill="#ffdf00" /><circle cx="14" cy="10" r="4.4" fill="#002776" /></svg></span>{location}</p>
+            <Link className="hero-cta" href="#trabalhos">{hero.actionLabel}<span aria-hidden="true">↓</span></Link>
           </div>
         </div>
-        <a className="scroll-cue" href="#trabalhos" aria-label={hero.scrollLabel}>
-          <span>{hero.scroll}</span><span className="scroll-arrow" aria-hidden="true">↓</span>
-        </a>
-        <span className="hero-index mono" aria-hidden="true">01 — 05</span>
       </section>
 
       <section className="work-section light-surface section-pad" id="trabalhos" aria-labelledby="work-title">
@@ -39,7 +42,7 @@ export function PortfolioHome({ locale }: { locale: Locale }) {
           <span className="heading-rule" aria-hidden="true" />
         </div>
         <div className="project-list">
-          {projects.map((project, index) => {
+          {projects.filter((project) => !project.placeholder).map((project, index) => {
             const copy = projectCopy[project.slug];
             const href = getPortfolioPath(locale, project.slug);
             const visual = (

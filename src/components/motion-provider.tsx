@@ -17,7 +17,7 @@ export function MotionProvider() {
       syncTouch: true,
       syncTouchLerp: 0.075,
       anchors: true,
-      respectReducedMotion: false,
+      respectReducedMotion: true,
     });
     lenis.on("scroll", ScrollTrigger.update);
     const tick = (time: number) => lenis.raf(time * 1000);
