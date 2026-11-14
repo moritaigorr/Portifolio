@@ -27,6 +27,7 @@ export function ExperienceSection({ copy }: { copy: LocaleContent["experience"] 
       <div className="experience-details section-pad">
         <div className="experience-company">
           <Image className="experience-logo" src="/images/evertec-logo.svg" alt="Evertec" width={200} height={40} />
+          <span className="experience-separator" aria-hidden="true">-</span>
           <p className="experience-period mono">{employmentPeriod}</p>
         </div>
         <h3 className="experience-subtitle">{copy.sectionTitle}</h3>
