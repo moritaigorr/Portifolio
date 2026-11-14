@@ -379,6 +379,7 @@ export function getPortfolioMetadata(locale: Locale): Metadata {
   const content = locales[locale];
 
   return {
+    metadataBase: new URL("https://www.igormorita.com"),
     title: content.metadataTitle,
     description: content.metadataDescription,
     openGraph: {
@@ -386,6 +387,18 @@ export function getPortfolioMetadata(locale: Locale): Metadata {
       description: content.openGraphDescription,
       locale: content.openGraphLocale,
       type: "website",
+      images: [
+        {
+          url: "/images/linkedin-portfolio-thumbnail.png?v=4",
+          width: 1200,
+          height: 627,
+          alt: "Igor Morita — Software Engineer",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: ["/images/linkedin-portfolio-thumbnail.png?v=4"],
     },
   };
 }
