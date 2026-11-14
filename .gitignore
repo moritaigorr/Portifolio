@@ -1,6 +1,24 @@
 node_modules/
 .next/
 out/
+build/
+.vercel/
+coverage/
+playwright-report/
+test-results/
+
+# Local environment variables
+.env*
+!.env.example
+
+# Local agent and editor state
+.serena/
+.superpowers/
+
+# Logs and build metadata
 *.log
+*.tsbuildinfo
+
+# Operating system files
 .DS_Store
 Thumbs.db

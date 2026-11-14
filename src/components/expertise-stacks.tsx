@@ -7,7 +7,6 @@ import {
 } from "simple-icons";
 import styles from "./expertise-stacks.module.css";
 
-const categoryIcons = [UsersThree, BracketsCurly];
 const brandIcons: Record<string, SimpleIcon> = {
   python: siPython, typescript: siTypescript, javascript: siJavascript, "spring boot": siSpringboot,
   "spring data jpa": siSpring, hibernate: siHibernate, "spring security": siSpring, fastapi: siFastapi,
